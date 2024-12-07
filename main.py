@@ -1,12 +1,43 @@
 import csv;
-from array import array;
+from array import array
+import os;
 from dot import dot;
 from graph import graph;
-from opotimalRoute import optimalRoute;
+from optimalRoute import optimalRoute;
 
 
 
-with open('BrandsHatchLayout.csv', 'r') as layout:
+def write_to_csv(filename, layoutLeft, layoutRight, optimalRoute):
+    with open(filename, 'w', newline='') as csvfile:
+        writer = csv.writer(csvfile)
+        writer.writerow(['x', 'y', 'relativePos'])
+        for d in layoutLeft:
+            writer.writerow([d.x, d.y, d.relativePos])
+        for d in layoutRight:
+            writer.writerow([d.x, d.y, d.relativePos])
+        for d in optimalRoute:
+            writer.writerow([d.x, d.y, d.relativePos])
+    print(f"Data written to {filename}")
+
+defaultAddress = "BrandsHatchLayout.csv"
+print("Chose if you want to read from the default file(File that was given) or from a new file")
+print ("The default file is BrandsHatchLayout.csv")
+print("1. Default file")
+print("2. New file")
+choice = input("Enter your choice: ")
+if choice == "2":
+    address = input("Enter the address of the file: ")
+    defaultAddress = address
+if choice != "1" and choice != "2":
+    print("Invalid choice")
+    exit()
+if(os.path.exists(defaultAddress) == False):
+    print("Invalid address")
+    exit()
+
+
+
+with open(defaultAddress, 'r') as layout:
     reader = csv.reader(layout)
     header = next(reader)
     layoutLeft = []
@@ -31,9 +62,15 @@ with open('BrandsHatchLayout.csv', 'r') as layout:
     
     optimal = optimalRoute(layoutLeft, layoutRight)
     g = graph(layoutLeft, layoutRight,optimal.smooth_route())
-    g.draw();    
-
+    g.draw()
+    write_to_csv("output.csv", layoutLeft, layoutRight, optimal.smooth_route())
         
+        
+        
+        
+        
+        
+
         
     
        

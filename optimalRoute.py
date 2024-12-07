@@ -104,7 +104,7 @@ class optimalRoute:
         spline_x = CubicSpline(t, x)
         spline_y = CubicSpline(t, y)
         t_smooth = np.linspace(0, 1, 50000) 
-        return [dot(spline_x(t), spline_y(t), "smooth") for t in t_smooth]        
+        return [dot(spline_x(t), spline_y(t), "middle") for t in t_smooth]        
         
         
      

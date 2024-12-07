@@ -35,14 +35,14 @@ class graph:
 
         # Scatter plot for layoutLeft
         plt.scatter(x_left, y_left, color=colors_left, s=10, alpha=0.7, label="Layout Left")
-        for i, d in enumerate(self.layoutLeft):
-            plt.text(d.x, d.y, f'L{i}', fontsize=9, ha='right')
+        # for i, d in enumerate(self.layoutLeft):
+        #     plt.text(d.x, d.y, f'L{i}', fontsize=9, ha='right')
 
 
         # Scatter plot for layoutRight
         plt.scatter(x_right, y_right, color=colors_right, s=10, alpha=0.7, label="Layout Right")
-        for i, d in enumerate(self.layoutRight):
-            plt.text(d.x, d.y, f'R{i}', fontsize=9, ha='right')
+        # for i, d in enumerate(self.layoutRight):
+        #     plt.text(d.x, d.y, f'R{i}', fontsize=9, ha='right')
 
         plt.scatter(x_optimal, y_optimal, color=colors_optimal, s=10, alpha=0.7, label="Optimal Route")
         # for i, d in enumerate(self.optimalRoute):
@@ -53,11 +53,6 @@ class graph:
         
         
         # Title and labels
-        
-        
-        
-        
-
         plt.plot(x_optimal, y_optimal, color='green', linestyle='-', linewidth=1, label="Optimal Route Line")
         
         
@@ -75,10 +70,6 @@ class graph:
         plt.xlim(min(all_x) - margin, max(all_x) + margin)
         plt.ylim(min(all_y) - margin, max(all_y) + margin)
         plt.grid(color='gray', linestyle='--', linewidth=0.5, alpha=0.7)
-       
-
-        self.zoom(0.1)
-        
 
         # Legend and display
         plt.tight_layout()
